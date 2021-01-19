@@ -1,14 +1,26 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import store from "@/store/auth"
 
 Vue.use(VueRouter)
+
+
+const ifAuthenticated = (to, from, next) => {
+	const isAuth = localStorage.getItem("user-token") || store.state.isAuth
+	if (isAuth) {
+		next()
+		return
+	}
+	next("/login")
+}
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    beforeEnter: ifAuthenticated
   },
   {
     path: '/login',

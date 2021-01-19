@@ -6,14 +6,14 @@ export function request (context, user) {
         Axios.post('/auth/local', user)
             .then( ({ data }) => {
                 const token = 'Bearer ' + data.jwt
-                // LocalStorage.set('user-token', token)
+                localStorage.setItem('user-token', token)
                 Axios.defaults.headers.common["Authorization"] = token;
                 context.commit('success', token)
                 resolve(data)
             })
             .catch(err => {
                 context.commit('error', err)
-                // LocalStorage.remove('user-token')
+                localStorage.removeItem('user-token')
                 delete Axios.defaults.headers.common["Authorization"];
                 reject(err)
             })
@@ -22,7 +22,7 @@ export function request (context, user) {
 
 export function logout () {
     return new Promise((resolve) => {
-        // LocalStorage.remove('user-token')
+        localStorage.removeItem('user-token')
         delete Axios.defaults.headers.common["Authorization"];
         resolve()
     })
