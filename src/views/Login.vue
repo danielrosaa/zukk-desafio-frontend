@@ -60,7 +60,7 @@ export default {
 
 	.form {
 		background: rgba($secondary, 0.07);
-		width: 30%;
+		min-width: 40%;
 		border-radius: 20px;
 		padding: 50px;
 		display: grid;
@@ -98,6 +98,12 @@ export default {
 		&:active {
 			box-shadow: none;
 		}
+	}
+}
+
+@media screen and (max-width: 801px) {
+	.form {
+		width: 90%;
 	}
 }
 </style>
