@@ -1,6 +1,8 @@
 import { Axios } from '@/boot/axios'
 
 export function request (context, user) {
+    user.identifier = user.identifier.toLowerCase()
+    console.log(user)
     return new Promise((resolve, reject) => {
         context.commit('request')
         Axios.post('/auth/local', user)

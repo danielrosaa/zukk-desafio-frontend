@@ -15,7 +15,17 @@
 				</div>
 			</div>
 			<div class="form__item">
-				<button class="button" type="submit">Enviar</button>
+				<button class="button" type="submit" :disabled="autenticando">
+					<span v-if="!autenticando">Enviar</span>
+					<q-spinner-hourglass v-else size="1.2rem"/>
+				</button>
+			</div>
+			<div>
+				<p class="form__item">
+					<em class="form__aviso">
+						A API de autenticação é hospedada em um plano básico no Heroku, portanto, após algum tempo de inatividade, o servidor "dorme" e pode demorar um pouco para responder. É esperado que o seu login leve mais tempo para ser efetuado. Obrigado pela compreensão.
+					</em>
+				</p>
 			</div>
 		</form>
 	</div>
@@ -36,13 +46,22 @@ export default {
 			const { identifier, password } = this
 			this.$store
 				.dispatch("auth/request", { identifier, password })
-				.then((response) => {
-					console.log('login', response)
+				.then(() => {
+					this.$q.notify({
+            type: "positive",
+            message: "Usuário logado com sucesso",
+						position: 'top'
+          });
 					this.autenticando = false
 					this.$router.push("/")
 				})
 				.catch(err => {
 					this.autenticando = false
+					this.$q.notify({
+            type: "negative",
+            message: "Ocorreu um erro ao tentar logar. Por favor, verifique seu login e senha.",
+						position: 'top'
+          });
 					console.log(err)
 				})
 		},
@@ -60,7 +79,7 @@ export default {
 
 	.form {
 		background: rgba($secondary, 0.07);
-		min-width: 40%;
+		width: 40%;
 		border-radius: 20px;
 		padding: 50px;
 		display: grid;
@@ -79,6 +98,10 @@ export default {
 			border-radius: 5px;
 			width: 100%;
 			padding: 10px;
+		}
+		&__aviso {
+			font-weight: 100;
+			color: #d9d9d9;
 		}
 	}
 
@@ -99,11 +122,14 @@ export default {
 			box-shadow: none;
 		}
 	}
-}
 
-@media screen and (max-width: 801px) {
-	.form {
-		width: 90%;
+	@media screen and (max-width: 801px) {
+		.form {
+			width: 90%;
+			padding: 10px 15px;
+		}
 	}
 }
+
+
 </style>
