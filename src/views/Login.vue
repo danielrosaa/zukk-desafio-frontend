@@ -1,5 +1,5 @@
 <template>
-	<div class="main-container login">
+	<div class="login">
 		<form class="form" @submit.prevent="onSubmit">
 			<div class="form__title">
 				<div>Login</div>
@@ -71,6 +71,7 @@ export default {
 
 <style lang="scss" scoped>
 .login {
+	height: 100%; // of main-container
 	display: flex;
 	flex-direction: column;
 	align-items: center;
