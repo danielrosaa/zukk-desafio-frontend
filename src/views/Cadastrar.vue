@@ -135,8 +135,7 @@ export default {
 		async buscaCep() {
       const { data } = await this.$axios.get(`https://www.cepaberto.com/api/v3/cep?cep=${this.cep}`, {
         headers: {
-          Authorization: 'Token token=b9775287f6c8b920f76c31f8a7a2292e',
-          'strict-origin-when-cross-origin': 'http://localhost:8080'
+          Authorization: 'Token token=b9775287f6c8b920f76c31f8a7a2292e'
         },
       })
       this.endereco = data.logradouro
