@@ -8,7 +8,7 @@ module.exports = {
             }
         }
     },
-
+    
     pluginOptions: {
       quasar: {
         importStrategy: 'kebab',
