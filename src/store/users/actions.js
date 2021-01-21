@@ -43,29 +43,30 @@ export function removeUser(context, payload) {
 }
 
 export function editUser(context, payload) {
+    console.log(payload)
 	const id = payload[1],
 		update = payload[0]
 	try {
 		Axios.put(`${usersBaseUrl}/users/${id}`, {
-			address: payload.endereco,
-			city: payload.cidade,
-			county: payload.bairro,
-			email: payload.email,
-			name: payload.nome,
-			phone: payload.telefone,
-			state: payload.estado,
-			zipcode: payload.cep,
+			address: update.address,
+			city: update.city,
+			county: update.county,
+			email: update.email,
+			name: update.name,
+			phone: update.phone,
+			state: update.state,
+			zipcode: update.zipcode,
 		})
 		context.getters.users.forEach(el => {
 			if (el.id === id) {
-				el.name = update.nome
-				el.phone = update.telefone
-				el.address = update.endereco
-				el.city = update.cidade
-				el.county = update.bairro
+				el.name = update.name
+				el.phone = update.phone
+				el.address = update.address
+				el.city = update.city
+				el.county = update.county
 				el.email = update.email
-				el.state = update.estado
-				el.zipcode = update.cep
+				el.state = update.state
+				el.zipcode = update.zipcode
 			}
 		})
 		context.commit("saveUsers", context.getters.users)

@@ -31,7 +31,7 @@
         <div>
           <form>
             <div @click="showEdit = false" class="fechar">
-              <fa-icon icon="times" />
+              <q-icon name="close" />
             </div>
             <h4>Atualizar usuário</h4>
             <transition name="fade">
@@ -40,12 +40,24 @@
               </div>
             </transition>
             <label for="nome">Nome</label>
-            <input v-model="nome" type="text" id="nome" />
+            <input v-model="alteracoes.name" type="text" id="nome"/>
             <label for="tel">Telefone</label>
-            <input v-model="tel" type="text" id="tel" />
+            <input v-model="alteracoes.phone" type="text" id="tel" />
+            <label for="tel">Email</label>
+            <input v-model="alteracoes.email" type="text" id="email" />
+            <label for="tel">Endereço</label>
+            <input v-model="alteracoes.address" type="text" id="endereco" />
+            <label for="tel">Bairro</label>
+            <input v-model="alteracoes.county" type="text" id="bairro" />
+            <label for="tel">Cidade</label>
+            <input v-model="alteracoes.city" type="text" id="cidade" />
+            <label for="tel">Estado</label>
+            <input v-model="alteracoes.state" type="text" id="estado" />
+            <label for="tel">CEP</label>
+            <input v-model="alteracoes.zipcode" type="text" id="cep" />
             <button
-              @click.prevent="editUser({ nome, tel }, user.id)"
-              class="success"
+              @click.prevent="editUser(alteracoes, user.id)"
+              class="button"
             >
               Alterar
             </button>
@@ -62,8 +74,9 @@ export default {
   data() {
     return {
       showEdit: false,
-      nome: null,
-      tel: null,
+      alteracoes: {
+        ...this.user
+      },
       alterado: false,
       error: false
     };
@@ -120,6 +133,47 @@ export default {
   }
   &.alterado {
     animation: bounce 1.5s;
+  }
+}
+
+.modal {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  position: fixed;
+  left: 0;
+  top: 0;
+  div {
+    position: relative;
+    margin: 0 auto;
+    width: 50%;
+    background: $gradient;
+    padding: 30px;
+    border-radius: 20px;
+    form {
+      display: grid;
+    }
+
+  }
+
+  input,
+  label {
+    margin-bottom: 10px;
+  }
+  button,
+  label {
+    margin-top: 10px;
+    color: white;
+  }
+  .fechar {
+    background: transparent;
+    margin: 0;
+    width: auto;
+    text-align: right;
+    position: absolute;
+    right: 10px;
+    transform: translateY(-20px);
+    cursor: pointer;
   }
 }
 
