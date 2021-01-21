@@ -165,7 +165,7 @@ export default {
 			// 	`https://www.cepaberto.com/api/v3/cep`,
 			// 	{
 			// 		headers: {
-			// 			Authorization: "Token token=b9775287f6c8b920f76c31f8a7a2292e",
+			// 			Authorization: "`Token token=${process.env.VUE_APP_CEPABERTOTOKEN}`",
 			// 			'Content-Type': 'text-plain',
 			// 			'Access-Control-Allow-Origin': 'strict-origin-when-cross-origin'
 			// 		},

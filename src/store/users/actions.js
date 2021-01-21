@@ -1,5 +1,5 @@
 import { Axios } from "@/boot/axios"
-const usersBaseUrl = "https://5f175a987c06c900160dc027.mockapi.io/api/v1/"
+const usersBaseUrl = process.env.VUE_APP_MOCKAPIBASEURL
 
 export async function loadUsers({ commit }) {
 	try {

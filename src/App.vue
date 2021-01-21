@@ -9,6 +9,9 @@
 
 <script>
 export default {
+  mounted() {
+    console.log('env', process.env.VUE_APP_TESTE)
+  },
   methods: {
     logout() {
       this.$store.dispatch('auth/logout').then(() => {
