@@ -16,17 +16,23 @@ const ifAuthenticated = (to, from, next) => {
 }
 
 const routes = [
-  {
-    path: "/login",
-    name: "Login",
-    component: Login,
-  },
+	{
+		path: "/login",
+		name: "Login",
+		component: Login,
+	},
 	{
 		path: "/",
+		name: "Listar",
+		component: () => import("../views/ListarUsuarios.vue"),
+		beforeEnter: ifAuthenticated,
+	},
+	{
+		path: "/cadastrar",
 		name: "Cadastrar",
 		component: () => import("../views/Cadastrar.vue"),
 		beforeEnter: ifAuthenticated,
-	}
+	},
 ]
 
 const router = new VueRouter({

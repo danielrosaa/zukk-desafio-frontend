@@ -1,121 +1,117 @@
 <template>
-  <div class="container">
-    <div class="adicionar">
-      <h4 style="margin-bottom: 5px; text-align:center">Adicionar usuário</h4>
-      <hr style="width:100%; margin: 0; margin-bottom: 10px" />
-      <transition name="fade">
-        <div v-if="error" class="error">
-          Todos os campos são necessários
+	<div class="cadastrar">
+		<div class="titulo">Adicionar usuário</div>
+		<transition name="fade">
+			<div v-if="error" class="error">
+				Todos os campos são necessários
+			</div>
+		</transition>
+		<form class="form">
+			<div class="dados q-gutter-md">
+        <div class="row justify-between">
+          <div class="form__item col-5">
+            <label class="form__label" for="nome">Nome</label>
+            <input class="form__input" v-model="nome" type="text" id="nome" />
+          </div>
+          <div class="form__item">
+            <label class="form__label" for="tel">Telefone</label>
+            <input class="form__input" v-model="telefone" type="text" id="tel" />
+          </div>
+          <div class="form__item">
+            <label class="form__label" for="tel">Email</label>
+            <input class="form__input" v-model="email" type="text" id="tel" />
+          </div>
         </div>
-      </transition>
-      <form>
-        <div class="form-item">
-          <label for="nome">Nome</label>
-          <input v-model="nome" type="text" id="nome" />
+				<div class="form__item">
+					<label class="form__label" for="tel">Endereço</label>
+				</div>
+				<div class="form__item">
+					<input class="form__input" v-model="endereco" type="text" id="tel" />
+				</div>
+        <div class="row justify-between">
+          <div class="form__item col-5">
+            <label class="form__label" for="tel">Bairro</label>
+            <input class="form__input" v-model="bairro" type="text" id="tel" />
+          </div>
+          <div class="form__item col-5">
+            <label class="form__label" for="tel">Cidade</label>
+            <input class="form__input" v-model="cidade" type="text" id="tel" />
+          </div>
+          <div class="form__item col-1">
+            <label class="form__label" for="tel">UF</label>
+            <input class="form__input" v-model="uf" type="text" id="tel" />
+          </div>
         </div>
-        <div class="form-item">
-          <label for="tel">Telefone</label>
-          <input v-model="tel" type="text" id="tel" />
-        </div>
-        <button @click.prevent="addUser" class="success">Adicionar</button>
-      </form>
-    </div>
-    <div class="lista">
-      <ul>
-        <transition-group :duration="300" name="remove">
-          <li v-for="user in users" :key="user.id" class="remove-item">
-            <user :user="user" />
-          </li>
-        </transition-group>
-      </ul>
-    </div>
-  </div>
+        <br/>
+				<button @click.prevent="addUser" class="button">Adicionar</button>
+			</div>
+			<div class="mapa">
+				<div>Mapa aqui</div>
+			</div>
+		</form>
+	</div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import User from "@/components/User.vue";
 export default {
-  components: { User },
-  computed: {
-    ...mapGetters({ users: 'users/users'})
-  },
-  data() {
-    return {
-      nome: "",
-      tel: "",
-      error: false
-    };
-  },
-  methods: {
-    resetForm() {
-      (this.nome = ""), (this.tel = "");
-    },
-    addUser() {
-      const user = {
-        name: this.nome,
-        phone: this.tel
-      };
-      if (this.nome !== "" && this.tel !== "") {
-        this.$store.dispatch("users/addUser", user);
-        this.resetForm();
-        this.error = false;
-      } else {
-        this.error = true;
-      }
-    }
-  },
-  mounted() {
-    this.$store.dispatch("users/loadUsers");
-  }
-};
+	data() {
+		return {
+			nome: "",
+			telefone: "",
+			email: "",
+			endereco: "",
+			bairro: "",
+			cidade: "",
+			uf: "",
+		}
+	},
+	methods: {
+		addUser() {
+			const user = {
+				name: this.nome,
+				phone: this.tel,
+			}
+			if (this.nome !== "" && this.tel !== "") {
+				this.$store.dispatch("users/addUser", user)
+				this.resetForm()
+				this.error = false
+			} else {
+				this.error = true
+			}
+		},
+	},
+}
 </script>
 
-<style scoped lang="scss">
-.container {
-  width: 80%;
-  max-width: 960px;
+<style lang="scss" scoped>
+.cadastrar {
+	width: 960px;
+	margin: 50px auto;
+}
 
-  .adicionar {
-    display: flex;
-    flex-direction: column;
-    form {
-      display: inline-flex;
-      justify-content: space-evenly;
-      align-items: flex-end;
-    }
-    input {
-      margin-top: 10px;
-    }
-    button,
-    label {
-      margin-top: 10px;
-    }
-    .form-item {
-      input {
-        width: 100%;
-      }
-    }
+.titulo {
+	font-size: 2rem;
+	margin-bottom: 50px;
+}
+
+.dados {
+}
+
+.mapa {
+  margin-top: 24px;
+	border: 1px solid black;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	background-image: $gradient;
+	&__item {
+		margin: 10px 0;
   }
-  .lista {
-    position: relative;
+  &__input {
+    margin-top: 0;
   }
-}
-ul {
-  padding: 0;
-}
-li {
-  list-style: none;
-}
-.remove-item {
-  transition: all 300ms;
-}
-.remove-enter,
-.remove-leave-to {
-  opacity: 0;
-}
-.remove-leave-active {
-  position: absolute;
-  width: 100%;
 }
 </style>

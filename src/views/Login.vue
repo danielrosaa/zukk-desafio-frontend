@@ -76,53 +76,7 @@ export default {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background-image: linear-gradient(to top right, #635BC4, #82ABDE);
-
-	.form {
-		background: rgba($secondary, 0.07);
-		width: 40%;
-		border-radius: 20px;
-		padding: 50px;
-		display: grid;
-		color: #FFF;
-		&__title {
-			font-size: 2rem;
-			font-weight: 100;
-			text-align: center;
-		}
-		&__item {
-			margin: 30px 0;
-		}
-		&__input {
-			outline: none;
-			border: 0;
-			border-radius: 5px;
-			width: 100%;
-			padding: 10px;
-		}
-		&__aviso {
-			font-weight: 100;
-			color: #d9d9d9;
-		}
-	}
-
-	.button {
-		padding: 10px;
-		border: 0;
-		outline: none;
-		background: $primary;
-		color: #FFF;
-		border-radius: 5px;
-		box-shadow: 0px 3px 5px 2px rgba($secondary, 0.2);
-		width: 100%;
-		transition: all 300ms;
-		&:hover {
-			opacity: 0.9;
-		}
-		&:active {
-			box-shadow: none;
-		}
-	}
+	background-image: $gradient;
 
 	@media screen and (max-width: 801px) {
 		.form {
