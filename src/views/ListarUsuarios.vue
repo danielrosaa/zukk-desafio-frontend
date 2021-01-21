@@ -1,5 +1,9 @@
 <template>
   <div class="container">
+    <div class="titulo">Usuário</div>
+    <div>
+      <router-link tag="button" class="button q-mb-lg" to="/cadastrar">Adicionar</router-link>
+    </div>
     <div class="lista">
       <ul>
         <transition-group :duration="300" name="remove">
@@ -37,8 +41,7 @@ export default {
 <style scoped lang="scss">
 .container {
   width: 80%;
-  margin: 0 auto;
-  max-width: 960px;
+  margin: 50px auto;
 
   .adicionar {
     display: flex;
@@ -70,6 +73,7 @@ ul {
 }
 li {
   list-style: none;
+  text-align: left;
 }
 .remove-item {
   transition: all 300ms;

@@ -19,12 +19,14 @@
       {{ user.state }}
     </div>
     <div class="actions">
-      <button @click="showEdit = true" class="info fab">
+      <q-btn @click="showEdit = true" icon="edit" round size="xs" color="primary" />
+      <q-btn @click="removeUser(user.id)" icon="delete" round size="xs" color="negative" />
+      <!-- <button @click="showEdit = true" class="info fab">
         <q-icon name="edit" />
-      </button>
-      <button @click="removeUser(user.id)" class="danger fab">
+      </button> -->
+      <!-- <button @click="removeUser(user.id)" class="danger fab">
         <q-icon name="delete" />
-      </button>
+      </button> -->
     </div>
     <transition name="fade">
       <div v-if="showEdit" class="modal">
@@ -113,6 +115,7 @@ export default {
   height: 50px;
   display: inline-flex;
   align-items: center;
+  justify-content: start;
   width: 100%;
   text-align: left;
   border-bottom: 1px solid lightgray;
@@ -122,7 +125,6 @@ export default {
   }
   div {
     flex: 2;
-    // margin-right: 30px;
     &.actions {
       flex: 1;
       text-align: right;

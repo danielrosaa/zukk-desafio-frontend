@@ -1,14 +1,15 @@
 @import "./variables";
 @import "./fonts";
 
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
+// * {
+// 	margin: 0;
+// 	padding: 0;
+// 	box-sizing: border-box;
+// }
 
 button,
 .main-container {
+	position: relative;
 	font-family: "Roboto", sans-serif;
 }
 
@@ -19,6 +20,7 @@ button {
 .main-container {
 	height: 100vh;
 	width: 100vw;
+	overflow-x: hidden;
 }
 
 .form {
@@ -60,7 +62,6 @@ button {
 	color: #fff;
 	border-radius: 5px;
 	box-shadow: 0px 3px 5px 2px rgba($secondary, 0.2);
-	width: 100%;
 	transition: all 300ms;
 	&:hover {
 		opacity: 0.9;
@@ -68,4 +69,9 @@ button {
 	&:active {
 		box-shadow: none;
 	}
+}
+
+.titulo {
+	font-size: 2rem;
+	margin-bottom: 10px;
 }

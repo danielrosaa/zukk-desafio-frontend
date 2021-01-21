@@ -1,22 +1,20 @@
 module.exports = {
-    css: {
-        loaderOptions: {
-            scss: {
-                additionalData: `
+	css: {
+		loaderOptions: {
+			scss: {
+				additionalData: `
                 @import "~@/assets/scss/main.scss";
-                `
-            }
-        }
-    },
-    
-    pluginOptions: {
-      quasar: {
-        importStrategy: 'kebab',
-        rtlSupport: false
-      }
-    },
+                `,
+			},
+		},
+	},
 
-    transpileDependencies: [
-      'quasar'
-    ]
+	pluginOptions: {
+		quasar: {
+			importStrategy: "kebab",
+			rtlSupport: false,
+		},
+	},
+
+	transpileDependencies: ["quasar"],
 }
