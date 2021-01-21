@@ -29,6 +29,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch("users/loadUsers");
+    console.log(this.users)
   }
 };
 </script>

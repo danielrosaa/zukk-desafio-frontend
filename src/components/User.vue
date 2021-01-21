@@ -6,6 +6,18 @@
     <div>
       {{ user.phone }}
     </div>
+    <div>
+      {{ user.email }}
+    </div>
+    <div>
+      {{ user.address }}
+    </div>
+    <div>
+      {{ user.city }}
+    </div>
+    <div>
+      {{ user.state }}
+    </div>
     <div class="actions">
       <button @click="showEdit = true" class="info fab">
         <q-icon name="edit" />

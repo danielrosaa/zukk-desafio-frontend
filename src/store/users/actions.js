@@ -13,8 +13,14 @@ export async function loadUsers({ commit }) {
 export async function addUser(context, payload) {
 	try {
 		const { data } = await Axios.post(usersBaseUrl + "users", {
-			name: payload.name,
-			phone: payload.phone,
+			address: payload.endereco,
+			city: payload.cidade,
+			county: payload.bairro,
+			email: payload.email,
+			name: payload.nome,
+			phone: payload.telefone,
+			state: payload.estado,
+			zipcode: payload.cep,
 		})
 		context.commit("saveUsers", [data, ...context.getters.users])
 	} catch (e) {
@@ -41,13 +47,25 @@ export function editUser(context, payload) {
 		update = payload[0]
 	try {
 		Axios.put(`${usersBaseUrl}/users/${id}`, {
-			name: update.nome,
-			phone: update.tel,
+			address: payload.endereco,
+			city: payload.cidade,
+			county: payload.bairro,
+			email: payload.email,
+			name: payload.nome,
+			phone: payload.telefone,
+			state: payload.estado,
+			zipcode: payload.cep,
 		})
 		context.getters.users.forEach(el => {
 			if (el.id === id) {
 				el.name = update.nome
-				el.phone = update.tel
+				el.phone = update.telefone
+				el.address = update.endereco
+				el.city = update.cidade
+				el.county = update.bairro
+				el.email = update.email
+				el.state = update.estado
+				el.zipcode = update.cep
 			}
 		})
 		context.commit("saveUsers", context.getters.users)
